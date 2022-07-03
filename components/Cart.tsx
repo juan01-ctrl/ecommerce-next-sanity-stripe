@@ -119,7 +119,7 @@ const Cart = () => {
           </div>
         )}
         {cartItems.length >= 1 && (
-          <div className="cart-bottom"  style={{ backgroundColor: "#fff" }}>
+          <div className="cart-bottom" style={{ backgroundColor: "#fff" }}>
             <div className="total">
               <h3>Subtotal</h3>
               <h3>${totalPrice?.toFixed(2)}</h3>

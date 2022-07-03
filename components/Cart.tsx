@@ -11,34 +11,39 @@ import toast from "react-hot-toast";
 import { useStateContext } from "../context/StateContext";
 import { urlFor } from "../lib/client";
 import getStripe from "../lib/getStripe";
+import Image from "next/image";
 
 const Cart = () => {
   const cartRef = useRef(null);
-  const { totalPrice, totalQuantities, cartItems, setShowCart,toggleCartItemQty,removeFromCart } =
-    useStateContext();
+  const {
+    totalPrice,
+    totalQuantities,
+    cartItems,
+    setShowCart,
+    toggleCartItemQty,
+    removeFromCart,
+  } = useStateContext();
 
+  const handleCheckout = async () => {
+    const stripe = await getStripe();
 
-    const handleCheckout = async()=>{
-      const stripe = await getStripe();
-      
-       console.log(cartItems)
-      const response = await fetch('/api/stripe',{
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json',
-          // 'mode': "no-cors"
-        },
-        body:JSON.stringify({cartItems})
-      })
-    
-      
-      if(response.status === 500)return;
+    console.log(cartItems);
+    const response = await fetch("/api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // 'mode': "no-cors"
+      },
+      body: JSON.stringify({ cartItems }),
+    });
 
-      const data = await response.json()
-      console.log(data)
-      toast.loading('Redirecting...')
-      if(stripe) stripe.redirectToCheckout({sessionId:data.id})
-    }
+    if (response.status === 500) return;
+
+    const data = await response.json();
+    console.log(data);
+    toast.loading("Redirecting...");
+    if (stripe) stripe.redirectToCheckout({ sessionId: data.id });
+  };
 
   return (
     <div className="cart-wrapper" ref={cartRef}>
@@ -70,9 +75,10 @@ const Cart = () => {
           <div className="product-container">
             {cartItems?.map((item) => (
               <div className="product" key={item._id}>
-                <img
+                <Image
                   src={urlFor(item?.image[0]).url()}
                   className="cart-product-image"
+                  alt={item.name}
                 />
                 <div className="item-desc">
                   <div className="flex top">
@@ -82,19 +88,29 @@ const Cart = () => {
                   <div className="flex bottom">
                     <div>
                       <p className="quantity-desc">
-                        <span className="minus" onClick={() => toggleCartItemQty(item._id,'dec')}>
+                        <span
+                          className="minus"
+                          onClick={() => toggleCartItemQty(item._id, "dec")}
+                        >
                           <AiOutlineMinus />
                         </span>
                         <span className="num" style={{ userSelect: "none" }}>
                           {item.quantity}
                         </span>
-                        <span className="plus" onClick={() => toggleCartItemQty(item._id,'inc')}>
+                        <span
+                          className="plus"
+                          onClick={() => toggleCartItemQty(item._id, "inc")}
+                        >
                           <AiOutlinePlus />
                         </span>
                       </p>
                     </div>
-                    <button type="button" className="remove-item" onClick={()=>removeFromCart(item._id)}>
-                      <TiDeleteOutline/>
+                    <button
+                      type="button"
+                      className="remove-item"
+                      onClick={() => removeFromCart(item._id)}
+                    >
+                      <TiDeleteOutline />
                     </button>
                   </div>
                 </div>
@@ -102,11 +118,11 @@ const Cart = () => {
             ))}
           </div>
         )}
-        {cartItems.length >=1 && (
+        {cartItems.length >= 1 && (
           <div className="cart-bottom">
-            <div className="total">
-                <h3>Subtotal</h3>
-                <h3>${totalPrice?.toFixed(2)}</h3>
+            <div className="total" style={{ backgroundColor: "#fff" }}>
+              <h3>Subtotal</h3>
+              <h3>${totalPrice?.toFixed(2)}</h3>
             </div>
             <div className="btn-container">
               <button type="button" className="btn" onClick={handleCheckout}>

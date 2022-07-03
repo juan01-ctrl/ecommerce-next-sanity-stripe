@@ -75,7 +75,7 @@ const Cart = () => {
           <div className="product-container">
             {cartItems?.map((item) => (
               <div className="product" key={item._id}>
-                <Image
+                <img
                   src={urlFor(item?.image[0]).url()}
                   className="cart-product-image"
                   alt={item.name}
@@ -119,8 +119,8 @@ const Cart = () => {
           </div>
         )}
         {cartItems.length >= 1 && (
-          <div className="cart-bottom">
-            <div className="total" style={{ backgroundColor: "#fff" }}>
+          <div className="cart-bottom"  style={{ backgroundColor: "#fff" }}>
+            <div className="total">
               <h3>Subtotal</h3>
               <h3>${totalPrice?.toFixed(2)}</h3>
             </div>

@@ -688,14 +688,15 @@ margin-top: 160px;
   .cart-container{
     width: 415px;
   padding: 4px;
+  padding-bottom: 5em;
   }
   .cart-heading{
     margin-top: 35px;
   }
   .product-container{
     margin-top: 10px;
-    
-    padding-bottom: 5em;
+
+
   }
   .product{
     padding: 20px 5px;

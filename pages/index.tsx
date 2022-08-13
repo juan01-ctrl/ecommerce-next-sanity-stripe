@@ -12,6 +12,7 @@ type PropTypes = {
 const index = ({products,banner}:PropTypes) => {
   return (
     <>
+   
 
       <HeroBanner heroBanner={banner[0]}/>
       <div className='products-heading'>

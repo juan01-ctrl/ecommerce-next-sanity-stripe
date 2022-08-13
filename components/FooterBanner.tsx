@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { BannerType } from "../interfaces/Banner";
@@ -40,7 +41,10 @@ const FooterBanner = ({
           </Link>
         </div>
         {image &&
-        <img src={urlFor(image).url()} alt="product" className="footer-banner-image"/>}
+        <div className="footer-banner-image">
+          <Image src={urlFor(image).url()} alt="product" height="450" width="450"/>
+        </div>
+          }
       </div>
     </div>
   );

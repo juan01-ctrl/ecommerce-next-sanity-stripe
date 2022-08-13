@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { ProductType } from "../interfaces/Product";
 import { urlFor } from "../lib/client";
+import Image from "next/image";
 
 type PropTypes = {
   product: ProductType;
@@ -11,7 +12,7 @@ const Product = ({ product: { image, name, slug, price } }: PropTypes) => {
     <div>
       <Link href={`/product/${slug?.current}`}>
         <div className="product-card">
-          {image&&<img
+          {image&&<Image
             src={urlFor(image[0]).url()}
             alt={name}
             width={250}

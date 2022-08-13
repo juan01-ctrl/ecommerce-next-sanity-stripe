@@ -89,14 +89,14 @@
   "resolved" "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.1.4.tgz"
   "version" "1.1.4"
 
-"@sanity/client@^2.11.0", "@sanity/client@^3.2.0":
-  "integrity" "sha512-M89v/KcNob0tnoMCW2caSnwYhSSqO1j5XuDXCloe966ZRFUAZWe9EVyyvvP7x1vPff5xR9PKxidrcx95l221mg=="
-  "resolved" "https://registry.npmjs.org/@sanity/client/-/client-3.3.2.tgz"
-  "version" "3.3.2"
+"@sanity/client@^2.11.0", "@sanity/client@^3.3.3":
+  "integrity" "sha512-2n4S/d49abreTa1hLehtrQ9lLR8KhnXdIb7kZajkGPGh2yWwbtMXpB7e1dxNvySmFehrJx5rtwdeO3l2IhnHBA=="
+  "resolved" "https://registry.npmjs.org/@sanity/client/-/client-3.3.3.tgz"
+  "version" "3.3.3"
   dependencies:
     "@sanity/eventsource" "^4.0.0"
     "@sanity/generate-help-url" "^3.0.0"
-    "get-it" "^6.0.1"
+    "get-it" "^6.1.1"
     "make-error" "^1.3.0"
     "object-assign" "^4.1.1"
     "rxjs" "^6.0.0"
@@ -893,10 +893,10 @@
     "has" "^1.0.3"
     "has-symbols" "^1.0.3"
 
-"get-it@^6.0.1":
-  "integrity" "sha512-hvk2h2hiOHji57MpBQ/o9CnJT7hpNII7Jio3AyY41I7AmkUVvnYrpQAPIQGc3j7R5QNYnhwyXmok+DSSdBLWbg=="
-  "resolved" "https://registry.npmjs.org/get-it/-/get-it-6.1.0.tgz"
-  "version" "6.1.0"
+"get-it@^6.1.1":
+  "integrity" "sha512-2835L9lb4NAgjAbFOMMOm2XDSgj+lWmmCQv40A5rE7zZoIdM2+yk7Ie+sBD3T5lHW/Dw5IFFHyx16oQGpAo4hQ=="
+  "resolved" "https://registry.npmjs.org/get-it/-/get-it-6.1.1.tgz"
+  "version" "6.1.1"
   dependencies:
     "@sanity/timed-out" "^4.0.2"
     "create-error-class" "^3.0.2"

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { BannerType } from "../interfaces/Banner";
@@ -14,7 +15,10 @@ const HeroBanner = ({ heroBanner }: PropTypes) => {
         <p className="beats-solo">{heroBanner?.smallText}</p>
         <h3>{heroBanner?.midText}</h3>
         <h1>{heroBanner?.largeText1}</h1>
-        <img src={urlFor(heroBanner?.image)?.url()} alt="headphones" className="hero-banner-image" />
+        <div className="hero-banner-image">
+        <Image src={urlFor(heroBanner?.image)?.url()} alt="headphones" height="550" width="550" />
+        </div>
+
         <div>
           <Link href={`/product/${heroBanner.product}`}>
             <button type="button">{heroBanner?.buttonText}</button>

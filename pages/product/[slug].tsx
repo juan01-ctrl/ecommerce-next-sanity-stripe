@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import {
   AiOutlineMinus,
   AiOutlinePlus,
@@ -10,7 +10,7 @@ import { ProductType } from "../../interfaces/Product";
 import { client, urlFor } from "../../lib/client";
 import { Product } from "../../components";
 import { useStateContext } from "../../context/StateContext";
-
+import Image from "next/image";
 
 type PropTypes = {
   product: ProductType;
@@ -20,24 +20,33 @@ type PropTypes = {
 const ProductDetails = ({ product, products }: PropTypes) => {
   const { image, name, details, price } = product;
   const [index, setIndex] = useState<number>(0);
-  
-  const {increaseQty,decreaseQty,quantity,addToCart,setShowCart} = useStateContext()
 
+  const { increaseQty, decreaseQty, quantity, addToCart, setShowCart } =
+    useStateContext();
 
-  const handleBuyNow = () =>{
-    addToCart(product,quantity)
-    setShowCart(true)
-  }
+  const handleBuyNow = () => {
+    addToCart(product, quantity);
+    setShowCart(true);
+  };
   return (
     <div>
       <div className="product-detail-container">
         <div>
           <div className="image-container">
-            {image && <img src={urlFor(image[index]).url()} alt={name} className="product-detail-image" />}
+            <div className="product-detail-image">
+              {image && (
+                <Image
+                  src={urlFor(image[index]).url()}
+                  alt={name}
+                  width="400px"
+                  height="400px"
+                />
+              )}
+            </div>
           </div>
           <div className="small-images-container">
             {image?.map((item, i) => (
-              <img
+              <Image
                 src={urlFor(item).url()}
                 className={
                   i === index ? "small-image selected-image" : "small-image"
@@ -45,6 +54,8 @@ const ProductDetails = ({ product, products }: PropTypes) => {
                 alt={name}
                 onMouseEnter={() => setIndex(i)}
                 key={i}
+                width="400"
+                height="400"
               />
             ))}
           </div>
@@ -70,7 +81,7 @@ const ProductDetails = ({ product, products }: PropTypes) => {
               <span className="minus" onClick={() => decreaseQty()}>
                 <AiOutlineMinus />
               </span>
-              <span className="num" style={{userSelect:"none"}}>
+              <span className="num" style={{ userSelect: "none" }}>
                 {quantity}
               </span>
               <span className="plus" onClick={() => increaseQty()}>
@@ -78,11 +89,15 @@ const ProductDetails = ({ product, products }: PropTypes) => {
               </span>
             </p>
           </div>
-          <div className="buttons" style={{userSelect:"none"}}>
-            <button type="button" className="add-to-cart" onClick={() => addToCart(product,quantity)}>
+          <div className="buttons" style={{ userSelect: "none" }}>
+            <button
+              type="button"
+              className="add-to-cart"
+              onClick={() => addToCart(product, quantity)}
+            >
               Add to Cart
             </button>
-            <button type="button" className="buy-now" onClick={ handleBuyNow}>
+            <button type="button" className="buy-now" onClick={handleBuyNow}>
               Buy Now
             </button>
           </div>

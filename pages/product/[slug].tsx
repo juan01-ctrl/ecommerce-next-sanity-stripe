@@ -32,17 +32,15 @@ const ProductDetails = ({ product, products }: PropTypes) => {
     <div>
       <div className="product-detail-container">
         <div>
-          <div className="image-container">
-            <div className="product-detail-image">
-              {image && (
-                <Image
-                  src={urlFor(image[index]).url()}
-                  alt={name}
-                  width="400px"
-                  height="400px"
-                />
-              )}
-            </div>
+          <div className="product-detail-image">
+            {image && (
+              <Image
+                src={urlFor(image[index]).url()}
+                alt={name}
+                width="400"
+                height="400"
+              />
+            )}
           </div>
           <div className="small-images-container">
             {image?.map((item, i) => (
@@ -54,8 +52,8 @@ const ProductDetails = ({ product, products }: PropTypes) => {
                 alt={name}
                 onMouseEnter={() => setIndex(i)}
                 key={i}
-                width="400"
-                height="400"
+                width="150"
+                height="150"
               />
             ))}
           </div>
